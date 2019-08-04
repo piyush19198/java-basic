@@ -3,20 +3,21 @@ package com.io;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.FileOutputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
-import java.io.DataOutputStream;
 
-public class Data_OutputStream{
+public class Buffered_OutputStream{
 	public static void main(String[] args){
-		int rollNo = 101;
-		String name = "Amar";
-		float marks = 75.5f;
-		
 		File file = new File("C:\\Users\\touch\\Desktop\\JavaPiyush\\Day 8\\PreRecess\\ReadMe.txt");
-		try(DataOutputStream dataOutput = new DataOutputStream(new FileOutputStream(file))){
-			dataOutput.writeInt(rollNo);
-			dataOutput.writeUTF(name);
-			dataOutput.writeFloat(marks);
+		
+		String str1 = "Line...1";
+		String str2 = "Line...2";
+		String str3 = "Line...3";
+		
+		try(BufferedOutputStream buffOutput = new BufferedOutputStream(new FileOutputStream(file))){
+			buffOutput.write(str1.getBytes());
+			buffOutput.write(str2.getBytes());
+			buffOutput.write(str3.getBytes());
 		}
 		catch(FileNotFoundException e){
 			e.printStackTrace();
@@ -24,6 +25,5 @@ public class Data_OutputStream{
 		catch(IOException e1){
 			e1.printStackTrace();
 		}
-		System.out.println("End -> DataOutputStream...");
 	}
 }
